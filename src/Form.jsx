@@ -118,7 +118,7 @@ export default function Form(props) {
             {Button("Bog", 'bog', (e) => buttonHandler(e, 'bog'))}
         </div>
 
-        <input value={drinkers} onChange={(e)=> (setDrinkers(parseInt(e.target.value)||''))} className='rounded-md p-2' type="number" placeholder="# of drinkers" min={1} max={10} />
+        <input pattern="\d*" value={drinkers} onChange={(e)=> (setDrinkers(parseInt(e.target.value)||''))} className='rounded-md p-2' type="number" placeholder="# of drinkers" min={1} max={10} />
         <div className='flex flex-col p-5 space-y-4 w-full justify-center'>
             {drinkers > 0 && durations.map((duration, idx) => (
                 <div key={idx} className={getResultCls(duration)}>{idx+1}. {duration} seconds</div>
