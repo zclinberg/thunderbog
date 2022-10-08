@@ -100,6 +100,17 @@ export default function Form(props) {
         setSong(_song)
     }
 
+    const getResultCls = (duration) => {
+        let color;
+        if(duration === Math.max(...durations)) {
+            color = "text-white border-red-600"
+        } else if (duration === Math.min(...durations)) {
+            color = "text-white border-green-600"
+        }else {
+            color = "text-white"
+        }
+        return `${color} rounded-md flex-grow p-2 border-2`
+    }
     return (
     <form className="flex flex-col w-full">
         <div className="flex flex-row justify-center p-5 w-full space-x-4">
@@ -109,8 +120,8 @@ export default function Form(props) {
 
         <input value={drinkers} onChange={(e)=> (setDrinkers(parseInt(e.target.value)||''))} className='rounded-md p-2' type="number" placeholder="# of drinkers" min={1} max={10} />
         <div className='flex flex-col p-5 space-y-4 w-full justify-center'>
-            {drinkers > 0 && durations.map((val, idx) => (
-                <div key={idx} className="bg-slate-500 rounded-md flex-grow p-2">{idx+1}. {val} seconds</div>
+            {drinkers > 0 && durations.map((duration, idx) => (
+                <div key={idx} className={getResultCls(duration)}>{idx+1}. {duration} seconds</div>
             ))}
         </div>
     </form>
