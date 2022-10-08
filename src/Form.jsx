@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+
 export default function Form(props) {
     const [song, setSong] = useState('thunder')
     const [drinkers, setDrinkers] = useState('')
@@ -8,7 +9,9 @@ export default function Form(props) {
         return <button key={key} className={"justify-center items-center center p-2 rounded shrink-0 w-1/4 " + cls} onClick={handler}>{label}</button>
     }
 
-
+    const getSongLink = () => {
+        return song === 'thunder' ? "https://open.spotify.com/embed/track/57bgtoPSgt236HzfBOd8kj?utm_source=generator&theme=0" : "https://open.spotify.com/embed/track/2VjrFvthQjw7BS8aS4VdZi?utm_source=generator"
+    }
 
     useEffect(() => {
         const thunders = [
@@ -124,6 +127,7 @@ export default function Form(props) {
                 <div key={idx} className={getResultCls(duration)}>{idx+1}. {duration} seconds</div>
             ))}
         </div>
+        <iframe sx={{borderRadius: '12px'}} src={getSongLink()} width="100%" height="152" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </form>
     )
 }
